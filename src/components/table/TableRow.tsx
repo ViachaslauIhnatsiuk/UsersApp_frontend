@@ -1,24 +1,27 @@
 import { FC } from 'react';
 
-const TableRow: FC = () => {
+import { convertDate } from '../../helpers/convertDate';
+import { IUser } from '../../models/user';
+
+const TableRow: FC<{ user: IUser }> = ({ user }) => {
   return (
     <tr>
       <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
         <input type="checkbox" />
       </td>
-      <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">1</td>
-      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">Name</td>
-      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-        name@gmail.com
+      <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+        {user._id}
+      </td>
+      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">{user.name}</td>
+      <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">{user.email}</td>
+      <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+        {convertDate(user.createdAt)}
       </td>
       <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-        Registration
+        {convertDate(user.updatedAt)}
       </td>
       <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-        Last login
-      </td>
-      <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-        Status
+        {user.isBlocked ? 'yes' : 'no'}
       </td>
     </tr>
   );

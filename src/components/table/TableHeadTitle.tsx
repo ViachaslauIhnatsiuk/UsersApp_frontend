@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { TableTitleProps } from '../../models/tableProps';
+import { ITableTitleProps } from '../../models/tableProps';
 
-const TableHeadTitle: FC<TableTitleProps> = ({ title }) => {
+const TableHeadTitle: FC<ITableTitleProps> = ({ title }) => {
   return (
     <th
       scope="col"

@@ -1,5 +1,5 @@
-interface TableTitleProps {
+interface ITableTitleProps {
   title: string;
 }
 
-export type { TableTitleProps };
+export type { ITableTitleProps };
