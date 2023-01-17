@@ -2,18 +2,15 @@ import { FC } from 'react';
 
 import { tableHeadTitles } from '../../constants/tableHeadTitles';
 import { useUserCheck } from '../../hooks/useUserCheck';
-import { TableHeadTitle } from './TableHeadTitle';
+import { UsersTableHeadTitle } from './UsersTableHeadTitle';
 
-const TableHead: FC = () => {
+const UsersTableHead: FC = () => {
   const { users, allUsersChecked, toggleAllUsers } = useUserCheck();
 
   return (
-    <thead className="bg-gray-50">
+    <thead className="bg-info">
       <tr>
-        <th
-          scope="col"
-          className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-        >
+        <th>
           <input
             type="checkbox"
             checked={allUsersChecked}
@@ -21,11 +18,11 @@ const TableHead: FC = () => {
           />
         </th>
         {tableHeadTitles.map((title) => (
-          <TableHeadTitle key={title} title={title} />
+          <UsersTableHeadTitle key={title} title={title} />
         ))}
       </tr>
     </thead>
   );
 };
 
-export { TableHead };
+export { UsersTableHead };

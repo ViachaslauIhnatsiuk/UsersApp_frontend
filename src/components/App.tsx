@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

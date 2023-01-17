@@ -1,13 +1,12 @@
 import { FC } from 'react';
-
-import { Button } from '../button/Button';
+import Button from 'react-bootstrap/Button';
 
 const Toolbar: FC = () => {
   return (
-    <nav className="flex gap-x-2 p-2">
-      <Button name="Block" color="red" />
-      <Button name="Unblock" color="green" />
-      <Button name="Delete" color="blue" />
+    <nav>
+      <Button variant="primary">Block</Button>
+      <Button variant="success">Unblock</Button>
+      <Button variant="warning">Delete</Button>
     </nav>
   );
 };
