@@ -30,7 +30,10 @@ const Home: FC = () => {
       }}
     >
       <div>
-        <Toolbar />
+        <div className="flex justify-between items-center py-2 px-6 text-2xl font-semibold text-gray-700">
+          <h1>Users List</h1>
+          <Toolbar />
+        </div>
         <Table users={users} />
       </div>
     </Context.Provider>

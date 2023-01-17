@@ -4,6 +4,7 @@ interface IUser {
   email: string;
   password: string;
   isBlocked: boolean;
+  isChecked: boolean;
   createdAt: string;
   updatedAt: string;
 }
