@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
 
+import { BASE_URL } from '../../constants/baseUrl';
+import { Context } from '../../context/context';
 import { IUser } from '../../models/user';
 import { Table } from '../table/Table';
 import { Toolbar } from '../toolbar/Toolbar';
-
-const BASE_URL = 'http://localhost:4000';
 
 const Home: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -23,10 +23,17 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <div>
-      <Toolbar />
-      <Table users={users} />
-    </div>
+    <Context.Provider
+      value={{
+        users,
+        setUsers,
+      }}
+    >
+      <div>
+        <Toolbar />
+        <Table users={users} />
+      </div>
+    </Context.Provider>
   );
 };
 
