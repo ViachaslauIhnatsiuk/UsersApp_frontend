@@ -5,6 +5,7 @@ interface IUser {
   password: string;
   isBlocked: boolean;
   isChecked: boolean;
+  lastSignin: number;
   createdAt: string;
   updatedAt: string;
 }

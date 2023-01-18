@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { convertDate } from '../../helpers/convertDate';
+import { convertCreatedDate, convertSigninDate } from '../../helpers/convertDate';
 import { useUserCheck } from '../../hooks/useUserCheck';
 import { IUser } from '../../models/user';
 
-const UsersTableRow: FC<{ user: IUser }> = ({ user }) => {
+const UsersTableRow: FC<{ user: IUser; index: number }> = ({ user, index }) => {
   const { toggleUser } = useUserCheck();
 
   return (
@@ -16,12 +16,18 @@ const UsersTableRow: FC<{ user: IUser }> = ({ user }) => {
           onChange={() => toggleUser(user)}
         />
       </td>
-      <td>{user._id}</td>
+      <td>{index + 1}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
-      <td>{convertDate(user.createdAt)}</td>
-      <td>{convertDate(user.updatedAt)}</td>
-      <td>{user.isBlocked ? 'yes' : 'no'}</td>
+      <td>{convertCreatedDate(user.createdAt)}</td>
+      <td>{convertSigninDate(user.lastSignin)}</td>
+      <td>
+        {user.isBlocked ? (
+          <span className="text-danger">blocked</span>
+        ) : (
+          <span className="text-success">not blocked</span>
+        )}
+      </td>
     </tr>
   );
 };

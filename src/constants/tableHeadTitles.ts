@@ -1,8 +1,8 @@
 export const tableHeadTitles = [
-  'id',
-  'name',
-  'email',
-  'registration date',
-  'last login date',
-  'status',
+  'ID',
+  'Name',
+  'Email',
+  'Registration date',
+  'Last login date',
+  'Status',
 ];

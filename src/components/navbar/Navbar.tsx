@@ -19,17 +19,17 @@ const Navbar: FC = () => {
           <div>
             <Link to="/">
               <Button variant="dark" onClick={signOut}>
-                SignOut
+                Sign Out
               </Button>
             </Link>
           </div>
         ) : (
           <div>
             <Link to="/signup">
-              <Button variant="dark">SignUp</Button>
+              <Button variant="dark">Sign Up</Button>
             </Link>
             <Link to="/signin">
-              <Button variant="dark">SignIn</Button>
+              <Button variant="dark">Sign In</Button>
             </Link>
           </div>
         )}

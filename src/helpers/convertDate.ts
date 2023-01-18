@@ -1,10 +1,25 @@
-export const convertDate = (createdAt: string) => {
-  const date = new Date(createdAt);
+const convertCreatedDate = (date: string) => {
+  const currentDate = new Date(date);
 
   const timeFormat: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   };
-  return date.toLocaleString('en-US', timeFormat);
+
+  return currentDate.toLocaleString('en-US', timeFormat);
 };
+
+const convertSigninDate = (date: number) => {
+  const currentDate = new Date(Number(date));
+
+  const timeFormat: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+
+  return currentDate.toLocaleString('en-US', timeFormat);
+};
+
+export { convertCreatedDate, convertSigninDate };

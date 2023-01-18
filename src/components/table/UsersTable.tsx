@@ -11,7 +11,9 @@ const UsersTable: FC<{ users: IUser[] }> = ({ users }) => {
       <UsersTableHead />
       <tbody>
         {users &&
-          users.map((user: IUser) => <UsersTableRow key={user._id} user={user} />)}
+          users.map((user: IUser, index: number) => (
+            <UsersTableRow key={user._id} user={user} index={index} />
+          ))}
       </tbody>
     </Table>
   );
