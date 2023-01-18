@@ -7,7 +7,7 @@ const useUsersManage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { users, setUsers, setAllUsersChecked } = useContext(Context);
 
-  const deleteUser = async () => {
+  const deleteUser = () => {
     setIsLoading(true);
 
     const usersToDelete = users.filter((user) => user.isChecked === true);
@@ -20,7 +20,7 @@ const useUsersManage = () => {
     usersToDelete.forEach(async ({ _id }) => {
       await fetch(`${BASE_URL}/users/${_id}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { authorization: `Bearer ${user.token}` },
       });
     });
 
@@ -29,39 +29,61 @@ const useUsersManage = () => {
     setIsLoading(false);
   };
 
-  const blockUser = async () => {
+  const blockUser = () => {
     setIsLoading(true);
 
-    const usersToBlock = users.filter((user) => user.isBlocked === true);
+    const usersToBlock = users.filter((user) => user.isChecked === true);
+    const updatedUsers = users.map((user) => {
+      if (user.isChecked) {
+        return { ...user, isBlocked: true, isChecked: false };
+      }
+      return user;
+    });
 
     const user = JSON.parse(localStorage.getItem('user') as string) || '';
 
     usersToBlock.forEach(async ({ _id }) => {
       await fetch(`${BASE_URL}/users/${_id}`, {
         method: 'PATCH',
-        headers: { Authorization: `Bearer ${user.token}` },
-        body: JSON.stringify({ isBlocked: user.isBlocked }),
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ isBlocked: true }),
       });
     });
 
+    setUsers(updatedUsers);
+    setAllUsersChecked(false);
     setIsLoading(false);
   };
 
-  const unblockUser = async () => {
+  const unblockUser = () => {
     setIsLoading(true);
 
-    const usersToUnblock = users.filter((user) => user.isBlocked === true);
+    const usersToUnblock = users.filter((user) => user.isChecked === true);
+    const updatedUsers = users.map((user) => {
+      if (user.isChecked) {
+        return { ...user, isBlocked: false, isChecked: false };
+      }
+      return user;
+    });
 
     const user = JSON.parse(localStorage.getItem('user') as string) || '';
 
     usersToUnblock.forEach(async ({ _id }) => {
       await fetch(`${BASE_URL}/users/${_id}`, {
         method: 'PATCH',
-        headers: { Authorization: `Bearer ${user.token}` },
-        body: JSON.stringify({ isBlocked: user.isBlocked }),
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ isBlocked: false }),
       });
     });
 
+    setUsers(updatedUsers);
+    setAllUsersChecked(false);
     setIsLoading(false);
   };
 
