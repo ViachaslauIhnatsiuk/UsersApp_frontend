@@ -21,7 +21,7 @@ const App: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <BrowserRouter>
         <Context.Provider
           value={{

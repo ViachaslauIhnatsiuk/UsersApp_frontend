@@ -8,7 +8,7 @@ const UsersTableHead: FC = () => {
   const { users, allUsersChecked, toggleAllUsers } = useUserCheck();
 
   return (
-    <thead className="bg-info">
+    <thead className="bg-light">
       <tr>
         <th>
           <input

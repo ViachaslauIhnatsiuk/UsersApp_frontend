@@ -7,7 +7,7 @@ import { UsersTableRow } from './UsersTableRow';
 
 const UsersTable: FC<{ users: IUser[] }> = ({ users }) => {
   return (
-    <Table striped>
+    <Table striped className="border border-light">
       <UsersTableHead />
       <tbody>
         {users &&

@@ -13,19 +13,26 @@ const Toolbar: FC = () => {
   };
 
   return (
-    <nav>
-      <Button variant="primary" disabled={isButtonShouldBeDisabled()} onClick={blockUser}>
+    <nav className="d-flex gap-2 py-2">
+      <Button
+        variant="warning"
+        size="sm"
+        disabled={isButtonShouldBeDisabled()}
+        onClick={blockUser}
+      >
         Block
       </Button>
       <Button
         variant="success"
+        size="sm"
         disabled={isButtonShouldBeDisabled()}
         onClick={unblockUser}
       >
         Unblock
       </Button>
       <Button
-        variant="warning"
+        variant="danger"
+        size="sm"
         disabled={isButtonShouldBeDisabled()}
         onClick={deleteUser}
       >
