@@ -47,7 +47,7 @@ const useUserCheck = () => {
     }
   };
 
-  return { users, allUsersChecked, toggleUser, toggleAllUsers };
+  return { users, allUsersChecked, toggleUser, toggleAllUsers, isUncheckedUserExist };
 };
 
 export { useUserCheck };
