@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { Context } from '../context/context';
 import { IUser } from '../models/user';
@@ -34,9 +34,9 @@ const App: FC = () => {
         >
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={isAuth ? <Home /> : <Navigate to="/signin" />} />
+            <Route path="/signin" element={!isAuth ? <Signin /> : <Navigate to="/" />} />
+            <Route path="/signup" element={!isAuth ? <Signup /> : <Navigate to="/" />} />
           </Routes>
         </Context.Provider>
       </BrowserRouter>

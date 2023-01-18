@@ -10,7 +10,11 @@ const Home: FC = () => {
 
   useEffect(() => {
     const fetchUsers = async (): Promise<void> => {
-      const response = await fetch(`${BASE_URL}/users`);
+      const response = await fetch(`${BASE_URL}/users`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const receivedUsers = await response.json();
 
       if (response.ok) {
@@ -18,7 +22,11 @@ const Home: FC = () => {
       }
     };
 
-    fetchUsers();
+    const user = JSON.parse(localStorage.getItem('user') as string) || '';
+
+    if (user) {
+      fetchUsers();
+    }
   }, []);
 
   return (
