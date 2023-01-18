@@ -1,17 +1,22 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import { Context } from '../context/context';
 import { IUser } from '../models/user';
 
 const useUserCheck = () => {
-  const [allUsersChecked, setAllUsersChecked] = useState<boolean>(false);
-  const { users, setUsers } = useContext(Context);
+  const { users, allUsersChecked, setUsers, setAllUsersChecked } = useContext(Context);
 
   const isUncheckedUserExist = (): boolean => {
     return users.find(({ isChecked }) => isChecked === false) ? true : false;
   };
 
   const toggleUser = (currentUser: IUser): void => {
+    const isAnyUserUnchecked = isUncheckedUserExist();
+
+    if (!isAnyUserUnchecked) {
+      setAllUsersChecked(false);
+    }
+
     const updatedUsers = users.map((user: IUser) => {
       if (currentUser._id === user._id) {
         return { ...user, isChecked: !currentUser.isChecked };

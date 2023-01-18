@@ -13,6 +13,7 @@ import { Signup } from './pages/Signup';
 const App: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [allUsersChecked, setAllUsersChecked] = useState<boolean>(false);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user') as string) || '';
@@ -28,8 +29,10 @@ const App: FC = () => {
           value={{
             users,
             isAuth,
+            allUsersChecked,
             setUsers,
             setIsAuth,
+            setAllUsersChecked,
           }}
         >
           <Navbar />
