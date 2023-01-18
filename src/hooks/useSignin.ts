@@ -6,16 +6,16 @@ import { Context } from '../context/context';
 const useSignin = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-  const { isAuth, setIsAuth } = useContext(Context);
+  const { setIsAuth } = useContext(Context);
 
-  const signIn = async (name: string, email: string, password: string) => {
+  const signIn = async (email: string, password: string) => {
     setIsLoading(true);
     setError(null);
 
     const response = await fetch(`${BASE_URL}/signin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const user = await response.json();
@@ -27,9 +27,8 @@ const useSignin = () => {
 
     if (response.ok) {
       localStorage.setItem('user', JSON.stringify(user));
-      console.log(isAuth);
+
       setIsAuth(true);
-      console.log(isAuth);
       setIsLoading(false);
     }
   };
