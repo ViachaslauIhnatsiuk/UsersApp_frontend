@@ -8,7 +8,7 @@ const useSignup = () => {
   const [error, setError] = useState<Error | null>(null);
   const { setIsAuth } = useContext(Context);
 
-  const signUp = async (name: string, email: string, password: string) => {
+  const signUp = async (name: string, email: string, password: string): Promise<void> => {
     setIsLoading(true);
     setError(null);
 

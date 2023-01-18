@@ -15,10 +15,10 @@ const Home: FC = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      const receivedUsers = await response.json();
+      const users = await response.json();
 
       if (response.ok) {
-        setUsers(receivedUsers);
+        setUsers(users);
       }
     };
 

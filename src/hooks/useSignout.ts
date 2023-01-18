@@ -6,7 +6,7 @@ import { Context } from '../context/context';
 const useSignout = () => {
   const { setIsAuth } = useContext(Context);
 
-  const signOut = async () => {
+  const signOut = async (): Promise<void> => {
     const user = JSON.parse(localStorage.getItem('user') as string) || '';
 
     await fetch(`${BASE_URL}/users/${user.id}`, {

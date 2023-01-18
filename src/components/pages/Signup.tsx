@@ -10,7 +10,7 @@ const Signup: FC = () => {
   const [password, setPassword] = useState<string>('');
   const { signUp, isLoading, error } = useSignup();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     await signUp(name, email, password);
   };

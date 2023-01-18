@@ -7,13 +7,13 @@ const useUserCheck = () => {
   const { users, allUsersChecked, setUsers, setAllUsersChecked } = useContext(Context);
 
   const isUncheckedUserExist = (): boolean => {
-    return users.find(({ isChecked }) => isChecked === false) ? true : false;
+    return users.find(({ isChecked }) => isChecked === false) ? false : true;
   };
 
   const toggleUser = (currentUser: IUser): void => {
     const isAnyUserUnchecked = isUncheckedUserExist();
 
-    if (!isAnyUserUnchecked) {
+    if (isAnyUserUnchecked) {
       setAllUsersChecked(false);
     }
 
@@ -30,7 +30,7 @@ const useUserCheck = () => {
   const toggleAllUsers = (users: IUser[]): void => {
     const isAnyUserUnchecked = isUncheckedUserExist();
 
-    if (isAnyUserUnchecked) {
+    if (!isAnyUserUnchecked) {
       const updatedTodoList = users.map((user) => (user = { ...user, isChecked: true }));
 
       setAllUsersChecked(true);

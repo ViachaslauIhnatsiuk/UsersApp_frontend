@@ -9,7 +9,7 @@ const useUsersManage = () => {
   const { users, setUsers, setAllUsersChecked } = useContext(Context);
   const { signOut } = useSignout();
 
-  const deleteUser = () => {
+  const deleteUser = (): void => {
     setIsLoading(true);
 
     const usersToDelete = users.filter((user) => user.isChecked === true);
@@ -39,7 +39,7 @@ const useUsersManage = () => {
     }
   };
 
-  const blockUser = () => {
+  const blockUser = (): void => {
     setIsLoading(true);
 
     const usersToBlock = users.filter((user) => user.isChecked === true);
@@ -76,7 +76,7 @@ const useUsersManage = () => {
     }
   };
 
-  const unblockUser = () => {
+  const unblockUser = (): void => {
     setIsLoading(true);
 
     const usersToUnblock = users.filter((user) => user.isChecked === true);

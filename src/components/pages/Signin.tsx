@@ -9,7 +9,7 @@ const Signin: FC = () => {
   const [password, setPassword] = useState<string>('');
   const { signIn, isLoading, error } = useSignin();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     await signIn(email, password);
   };
