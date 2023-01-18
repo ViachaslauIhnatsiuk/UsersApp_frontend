@@ -2,13 +2,17 @@ import { FC, FormEvent, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import { useSignin } from '../../hooks/useSignin';
+
 const Signin: FC = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const { signIn, isLoading, error } = useSignin();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await signIn(name, email, password);
   };
 
   return (
@@ -40,9 +44,10 @@ const Signin: FC = () => {
           placeholder="Enter password"
         />
       </Form.Group>
-      <Button variant="primary" type="button">
+      <Button variant="primary" type="submit" disabled={isLoading}>
         SingIn
       </Button>
+      {error && <div>{error}</div>}
     </Form>
   );
 };

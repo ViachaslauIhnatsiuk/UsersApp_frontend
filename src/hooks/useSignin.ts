@@ -1,18 +1,18 @@
 import { useContext, useState } from 'react';
 
+import { BASE_URL } from '../constants/baseUrl';
 import { Context } from '../context/context';
-import { BASE_URL } from './../constants/baseUrl';
 
-const useAuth = () => {
+const useSignin = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-  const { setIsAuth } = useContext(Context);
+  const { isAuth, setIsAuth } = useContext(Context);
 
-  const signUp = async (name: string, email: string, password: string) => {
+  const signIn = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(`${BASE_URL}/signup`, {
+    const response = await fetch(`${BASE_URL}/signin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
@@ -27,12 +27,14 @@ const useAuth = () => {
 
     if (response.ok) {
       localStorage.setItem('user', JSON.stringify(user));
+      console.log(isAuth);
       setIsAuth(true);
+      console.log(isAuth);
       setIsLoading(false);
     }
   };
 
-  return { signUp, isLoading, error };
+  return { signIn, isLoading, error };
 };
 
-export { useAuth };
+export { useSignin };

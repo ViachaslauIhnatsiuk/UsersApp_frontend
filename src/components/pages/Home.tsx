@@ -1,14 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 
 import { BASE_URL } from '../../constants/baseUrl';
 import { Context } from '../../context/context';
-import { IUser } from '../../models/user';
 import { UsersTable } from '../table/UsersTable';
 import { Toolbar } from '../toolbar/Toolbar';
 
 const Home: FC = () => {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const { users, setUsers } = useContext(Context);
 
   useEffect(() => {
     const fetchUsers = async (): Promise<void> => {
@@ -24,19 +22,10 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <Context.Provider
-      value={{
-        users,
-        isAuth,
-        setUsers,
-        setIsAuth,
-      }}
-    >
-      <div className="px-2">
-        <Toolbar />
-        <UsersTable users={users} />
-      </div>
-    </Context.Provider>
+    <div className="px-2">
+      <Toolbar />
+      <UsersTable users={users} />
+    </div>
   );
 };
 

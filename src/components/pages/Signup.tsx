@@ -2,13 +2,13 @@ import { FC, FormEvent, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { useAuth } from '../../hooks/useAuth';
+import { useSignup } from '../../hooks/useSignup';
 
 const Signup: FC = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { signUp, isLoading, error } = useAuth();
+  const { signUp, isLoading, error } = useSignup();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
