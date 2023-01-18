@@ -2,10 +2,12 @@ import { useContext, useState } from 'react';
 
 import { BASE_URL } from '../constants/baseUrl';
 import { Context } from '../context/context';
+import { useSignout } from './useSignout';
 
 const useUsersManage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { users, setUsers, setAllUsersChecked } = useContext(Context);
+  const { signOut } = useSignout();
 
   const deleteUser = () => {
     setIsLoading(true);
@@ -27,6 +29,14 @@ const useUsersManage = () => {
     setUsers(remainingUsers);
     setAllUsersChecked(false);
     setIsLoading(false);
+
+    const isCurrentUserWillBeDeleted = usersToDelete.find(
+      ({ email }) => email === user.email,
+    );
+
+    if (isCurrentUserWillBeDeleted) {
+      signOut();
+    }
   };
 
   const blockUser = () => {
@@ -56,6 +66,14 @@ const useUsersManage = () => {
     setUsers(updatedUsers);
     setAllUsersChecked(false);
     setIsLoading(false);
+
+    const isCurrentUserWillBeBlocked = usersToBlock.find(
+      ({ email }) => email === user.email,
+    );
+
+    if (isCurrentUserWillBeBlocked) {
+      signOut();
+    }
   };
 
   const unblockUser = () => {
