@@ -8,6 +8,7 @@ import { Toolbar } from '../toolbar/Toolbar';
 
 const Home: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUsers = async (): Promise<void> => {
@@ -26,14 +27,13 @@ const Home: FC = () => {
     <Context.Provider
       value={{
         users,
+        isAuth,
         setUsers,
+        setIsAuth,
       }}
     >
       <div className="px-2">
-        <div className="d-flex py-2 px-4 justify-content-between align-items-center">
-          <h1>Users List</h1>
-          <Toolbar />
-        </div>
+        <Toolbar />
         <UsersTable users={users} />
       </div>
     </Context.Provider>
